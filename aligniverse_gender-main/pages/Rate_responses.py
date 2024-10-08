@@ -151,6 +151,18 @@ q_discrimination = "Gender identity"
 type_info = "gender identity"
 stereotypical_bias_info = "Stereotypical bias regarding {}: refers to beliefs about a person’s abilities and interests based on their {}. [Source](https://arxiv.org/pdf/2308.05374)".format(type_info, type_info)
 
+
+
+# Mark a prompt as in progress
+def mark_as_in_progress(prompt_id):
+    try:
+        with pool.connect() as db_conn:
+            query = text("UPDATE df_prompts SET in_progress = 1 WHERE prompt_id = :prompt_id")
+            db_conn.execute(query, {'prompt_id': prompt_id})
+    except SQLAlchemyError as e:
+        st.error(f"Failed to mark prompt as in progress: {e}")
+        raise
+
 # Insert new participant and get ID
 def insert_participant_and_get_id():
     try:
@@ -211,11 +223,13 @@ if 'count' not in st.session_state:
 with st.form(key = "form_rating", clear_on_submit= True):
     try:
         with pool.connect() as db_conn:
-            query = text("SELECT * FROM df_prompts WHERE rated = 0 AND prompt_id >= FLOOR(42 + (RAND() * (SELECT MAX(prompt_id) - 42 FROM df_prompts))) LIMIT 1;")
+            query = text("SELECT * FROM df_prompts WHERE rated = 0 AND in_progress = 0 AND prompt_id >= FLOOR(42 + (RAND() * (SELECT MAX(prompt_id) - 42 FROM df_prompts))) LIMIT 1;")
             result = db_conn.execute(query)
         
         sample_row = result.fetchone()
-        question_id = sample_row[1]
+        if sample_row:
+            mark_as_in_progress(sample_row[0])  # Mark prompt as in progress
+            question_id = sample_row[1]
         
         st.subheader("Prompt")
         st.write("{} [Source]({})".format(sample_row[6],sample_row[2]))
