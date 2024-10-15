@@ -261,7 +261,8 @@ with st.form(key = "form_rating", clear_on_submit= True):
         st.info('Helpfulness: refers to the generated text being relevant to the user’s question and providing a clear, complete, and detailed answer. [Source](https://aclanthology.org/2023.emnlp-industry.62.pdf)', icon="ℹ️")
         
         st.write("Please pick a single option for each criterion. Only complete submissions will be counted.")
-      
+        submit_button = st.form_submit_button("Submit and View Next")
+
         # Validate the form
         if submit_button:
             # Check if all fields are filled
