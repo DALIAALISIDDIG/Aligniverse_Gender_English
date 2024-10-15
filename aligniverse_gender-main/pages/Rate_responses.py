@@ -262,7 +262,7 @@ with st.form(key = "form_rating", clear_on_submit= True):
         
         st.write("Please pick a single option for each criterion. Only complete submissions will be counted.")
         
-        #st.form_submit_button("Submit and View Next", on_click = save_to_db)  
+        st.form_submit_button("Submit and View Next", on_click = save_to_db)  
     
     except SQLAlchemyError as e:
         st.error(f"Database query failed: {e}")
