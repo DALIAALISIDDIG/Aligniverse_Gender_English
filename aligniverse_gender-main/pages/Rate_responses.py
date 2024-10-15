@@ -220,10 +220,30 @@ def save_to_db():
 if 'count' not in st.session_state:
     st.session_state['count'] = 0
 
+
+def validate_and_save():
+    # Access session state values
+    res_q0 = st.session_state.key_q0
+    res_q1 = st.session_state.key_q1
+    res_q2 = st.session_state.key_q2
+    res_q3 = st.session_state.key_q3
+    res_q4 = st.session_state.key_q4
+    res_q5 = st.session_state.key_q5
+    
+    # Check if all the fields have a valid option selected
+    if all(option != "Select an option" for option in [res_q0, res_q1, res_q2, res_q3, res_q4, res_q5]):
+        save_to_db()  # Save only if validation passes
+        st.success("Thank you for your rating!")
+    else:
+        st.error("Please select an option for all questions before submitting.")
+
+
+
+
 with st.form(key = "form_rating", clear_on_submit= True):
     try:
         with pool.connect() as db_conn:
-            query = text("SELECT * FROM df_prompts WHERE rated = 0 AND in_progress = 0 ORDER BY RAND() LIMIT 1")
+            query = text("SELECT * FROM df_prompts ORDER BY RAND() LIMIT 1")
             result = db_conn.execute(query)
         
         sample_row = result.fetchone()
@@ -257,8 +277,9 @@ with st.form(key = "form_rating", clear_on_submit= True):
         st.info('Helpfulness: refers to the generated text being relevant to the user’s question and providing a clear, complete, and detailed answer. [Source](https://aclanthology.org/2023.emnlp-industry.62.pdf)', icon="ℹ️")
         
         st.write("Please pick a single option for each criterion. Only complete submissions will be counted.")
+        st.form_submit_button("Submit and View Next", on_click=validate_and_save) 
         
-        st.form_submit_button("Submit and View Next", on_click = save_to_db)  
+        #st.form_submit_button("Submit and View Next", on_click = save_to_db)  
     except SQLAlchemyError as e:
         st.error(f"Database query failed: {e}")
     except Exception as e:
