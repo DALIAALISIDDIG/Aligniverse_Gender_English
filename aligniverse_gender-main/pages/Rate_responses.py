@@ -261,18 +261,9 @@ with st.form(key = "form_rating", clear_on_submit= True):
         st.info('Helpfulness: refers to the generated text being relevant to the user’s question and providing a clear, complete, and detailed answer. [Source](https://aclanthology.org/2023.emnlp-industry.62.pdf)', icon="ℹ️")
         
         st.write("Please pick a single option for each criterion. Only complete submissions will be counted.")
-        submit_button = st.form_submit_button("Submit and View Next")
-
-        # Validate the form
-        if submit_button:
-            # Check if all fields are filled
-            if all(option is not None for option in [q0, q1, q2, q3, q4, q5]):
-                save_to_db()  # Save only if validation passes
-                st.success("Thank you for your rating!")
-            else:
-                st.error("Please select an option for all questions before submitting.")
         
         #st.form_submit_button("Submit and View Next", on_click = save_to_db)  
+    
     except SQLAlchemyError as e:
         st.error(f"Database query failed: {e}")
     except Exception as e:
