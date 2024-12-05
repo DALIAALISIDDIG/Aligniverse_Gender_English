@@ -201,6 +201,7 @@ def save_to_db():
     res_q3 = st.session_state.key_q3
     res_q4 = st.session_state.key_q4
     res_q5 = st.session_state.key_q5
+    attention_check= st.session_state.key_attention_check
 
     if all([res_q0, res_q1, res_q2, res_q3, res_q4, res_q5]):
         st.session_state['count'] += 1
