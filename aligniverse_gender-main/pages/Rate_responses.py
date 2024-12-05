@@ -134,7 +134,7 @@ def insert_rating(participant_id, question_id, prompt_id, gender_focused, rating
         with pool.connect() as db_conn:
             db_conn.execute(insert_query, (
                 participant_id, question_id, prompt_id, gender_focused, rating_stereotypical_bias,
-                rating_toxicity, rating_emotional_awareness, rating_sensitivity, rating_helpfulness
+                rating_toxicity, rating_emotional_awareness, rating_sensitivity, rating_helpfulness, attention
             ))
     except SQLAlchemyError as e:
         st.error(f"Database insertion failed: {e}")
@@ -212,7 +212,6 @@ def save_to_db():
         sample_row[0],  # prompt_id
         res_q0,
         res_q1,
-        
         res_q2,
         res_q3,
         res_q4,
