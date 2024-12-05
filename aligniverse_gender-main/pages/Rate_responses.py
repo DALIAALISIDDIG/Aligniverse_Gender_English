@@ -115,7 +115,7 @@ pool = get_sqlalchemy_engine(tunnel)
 
 
 # Insert a rating into the database
-def insert_rating(participant_id, question_id, prompt_id, gender_focused, rating_stereotypical_bias, rating_toxicity, rating_emotional_awareness, rating_sensitivity, rating_helpfulness):
+def insert_rating(participant_id, question_id, prompt_id, gender_focused, rating_stereotypical_bias, rating_toxicity, rating_emotional_awareness, rating_sensitivity, rating_helpfulness,attention):
     insert_query = """
     INSERT INTO df_ratings (
         participant_id,
