@@ -130,7 +130,7 @@ def insert_rating(participant_id, question_id, prompt_id, gender_focused, rating
         attention,
         attention2,
         attention3
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s,%s)
     """
     try:
         with pool.connect() as db_conn:
