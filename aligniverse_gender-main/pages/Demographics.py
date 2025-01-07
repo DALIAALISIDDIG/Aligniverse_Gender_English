@@ -209,7 +209,8 @@ q5_demo_str = json.dumps(q5_demo)
 
 q6_demo = survey.selectbox("Which political party would you be most likely to vote for?", options=political_parties, id="Q6_demo", index=None)
 
-q7_demo = survey.select_slider("Where do you see yourself on the political spectrum?", options=["Liberal", "Rather liberal", "Centre", "Rather conservative", "Conservative"], id="Q7_demo")
+#q7_demo = survey.select_slider("Where do you see yourself on the political spectrum?", options=["Liberal", "Rather liberal", "Centre", "Rather conservative", "Conservative"], id="Q7_demo")
+q7_demo = survey.select_slider("Where do you see yourself on the political spectrum?", options=["Liberal", "Centre", "Conservative"], id="Q7_demo")
 
 
 # Submission handler
