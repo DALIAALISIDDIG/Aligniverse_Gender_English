@@ -237,7 +237,7 @@ if 'count' not in st.session_state:
 with st.form(key = "form_rating", clear_on_submit= True):
     try:
         with pool.connect() as db_conn:
-            query = text("SELECT * FROM df_prompts ORDER BY RAND() LIMIT 1")
+            query = text("SELECT * FROM df_prompts where prompt_id in (select prompt_id from df_prompts_german_mapped) ORDER BY RAND() LIMIT 1")
             result = db_conn.execute(query)
         
         sample_row = result.fetchone()
