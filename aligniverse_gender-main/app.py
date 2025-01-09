@@ -64,7 +64,7 @@ st.write(text2)
 text3 = "Join our study to review and evaluate LLM-generated texts on sensitive topics. We will publish the collected ratings as an alignment dataset for the community."
 st.write(text3)
 
-text4 = "Participating typically takes between 10 and 30 minutes. You can rate as many texts as you prefer, and we appreciate your willingness to contribute."
+text4 = "Participating typically takes between 15 minutes. You will rate 5 GPT responses, and we appreciate your willingness to contribute."
 st.write(text4)
 
 st.divider()
@@ -94,7 +94,7 @@ if st.button("Review general information and consent form"):
     (2) Switzerland: Dargebotene Hand at +41 143
 
     **Who can I contact if I have further questions?**
-    If you have further questions, please contact: Michèle Wieland, mwieland@ethz.ch
+    If you have further questions, please contact: Dalia Ali, dalia.ali@tum.de
     
     **Information on data protection**
     In this study, Orestis Papakyriakopoulos is responsible for data processing. The legal basis for processing is personal consent (Art. 6 para. 1 lit. a, Art. 9 para. 2 lit. a GDPR). The data will be treated confidentially at all times. The data will be collected solely for the purpose of the study described above and will only be used within this framework. We do not collect personal data. We do collect additional sensitive personal data. These include age, gender identification, country of residence, ancestry, and ethnic affiliation. All data will be collected anonymously. This means that no one, including the study leaders, can determine to whom the data belongs. 
