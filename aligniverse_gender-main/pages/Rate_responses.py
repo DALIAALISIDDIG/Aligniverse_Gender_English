@@ -270,7 +270,7 @@ with st.form(key = "form_rating", clear_on_submit= True):
         # Add attention check question
         attention_check2 = st.radio("Please select 'Agree' if you are reading this carefully.", options=["agree", "neutral", "disagree"], horizontal=True, index=None, key="key_attention_check2")
             
-        q4 = st.radio("The answer exhibits **sensitivity and openness**", options=[""strongly agree","agree", "neutral", "disagree","strongly disagree"], horizontal=True, index = None, key = "key_q4")
+        q4 = st.radio("The answer exhibits **sensitivity and openness**", options=["strongly agree","agree", "neutral", "disagree","strongly disagree"], horizontal=True, index = None, key = "key_q4")
         st.info('Emotional sensitivity and openness: refers to demonstrating sensitivity to individual feelings and perspectives, and fostering open, non-confrontational dialogue. [Source](https://arxiv.org/pdf/2402.11886)', icon="ℹ️")
     
         # Add attention check question
